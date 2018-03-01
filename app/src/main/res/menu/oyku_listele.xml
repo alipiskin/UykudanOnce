@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/new_stories" android:title="En Yeni Öyküler"></item>
+    <item android:id="@+id/most_read" android:title="En Çok Okunanlar"></item>
+    <item android:id="@+id/send_story" android:title="Öykünü Gönder"></item>
+
+
+
+</menu>
