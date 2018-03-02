@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by alipi on 26.02.2018.
  */
 
-public class PostClass extends ArrayAdapter<String> {
+public class PostClassDetail extends ArrayAdapter<String> {
 
     private final ArrayList<String> storyTitle;
     private final ArrayList<String> storyBody;
@@ -26,7 +26,7 @@ public class PostClass extends ArrayAdapter<String> {
     private final Activity context;
 
 
-    public PostClass(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage, Activity context) {
+    public PostClassDetail(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage, Activity context) {
         super(context,R.layout.custom_view, storyTitle);
         this.storyTitle = storyTitle;
         this.storyBody = storyBody;
@@ -46,15 +46,7 @@ public class PostClass extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) customView.findViewById(R.id.storyImageView);
 
         useremailText.setText(storyTitle.get(position));
-        if (storyBody.get(position).length() > 80) {
-                commentText.setText(storyBody.get(position).substring(0,80));
-
-        }else {
-            commentText.setText(storyBody.get(position));
-
-        }
-
-
+        commentText.setText(storyBody.get(position).substring(0,5));
         Picasso.with(context).load(storyImage.get(position)).into(imageView);
 
         return customView;

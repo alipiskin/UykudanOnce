@@ -77,7 +77,7 @@ public class UploadAcitivity extends AppCompatActivity {
                 Date date = new Date();
 
                 UUID uuid=UUID.randomUUID();
-                String uuidString= uuid.toString()+"__"+userEmail.replaceAll(".","DOT")+"__"+date.toString().replaceAll("\\s","");
+                String uuidString= uuid.toString()+"__"+userEmail.replaceAll("\\.","DOT")+"__"+date.toString().replaceAll("\\s","");
                 System.out.println(uuidString);
                 myRef.child("Stories").child(uuidString).child("sentby").setValue(userEmail);
                 myRef.child("Stories").child(uuidString).child("storyTitle").setValue(storyTitle);
