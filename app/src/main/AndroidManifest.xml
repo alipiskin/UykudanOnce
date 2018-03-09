@@ -28,7 +28,7 @@
         <activity android:name=".StoryListing" />
         <activity android:name=".UploadAcitivity" />
         <activity android:name=".LoginScreen" />
-        <activity android:name=".StoryDetail"></activity>
+        <activity android:name=".StoryDetailActivity"></activity>
     </application>
 
 </manifest>

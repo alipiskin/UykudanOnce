@@ -20,19 +20,45 @@ import java.util.ArrayList;
 
 public class PostClass extends ArrayAdapter<String> {
 
+    private final ArrayList<String> storyId;
     private final ArrayList<String> storyTitle;
     private final ArrayList<String> storyBody;
     private final ArrayList<String> storyImage;
+    private final ArrayList<String> storySentBy;
+    private final ArrayList<String> storyHit;
+    private final ArrayList<String> storyDate;
+    private final ArrayList<String> storyType;
+    private final ArrayList<String> storyIsFree;
+    private final ArrayList<String> storyIsVisible;
+    private final ArrayList<Integer> storyLikeCount;
+    private final ArrayList<Integer> storyDisLikeCount;
+    private final ArrayList<String> storyAuthor;
+    private final ArrayList<String> storyTags;
+
     private final Activity context;
 
 
-    public PostClass(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage, Activity context) {
+    public PostClass(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage,ArrayList<String> storySentBy, ArrayList<String> storyHit,ArrayList<String> storyDate,ArrayList<String> storyType,ArrayList<String> storyIsFree,ArrayList<String> storyIsVisible,ArrayList<String> storyId,ArrayList<Integer> storyLikeCount,ArrayList<Integer> storyDisLikeCount,ArrayList<String> storyAuthor,ArrayList<String> storyTags, Activity context) {
         super(context,R.layout.custom_view, storyTitle);
         this.storyTitle = storyTitle;
         this.storyBody = storyBody;
         this.storyImage = storyImage;
+        this.storySentBy = storySentBy;
+        this.storyHit = storyHit;
+        this.storyDate = storyDate;
+        this.storyType = storyType;
+        this.storyIsFree = storyIsFree;
+        this.storyIsVisible = storyIsVisible;
+        this.storyId = storyId;
+        this.storyLikeCount = storyLikeCount;
+        this.storyDisLikeCount = storyDisLikeCount;
+        this.storyAuthor = storyAuthor;
+        this.storyTags = storyTags;
+
         this.context = context;
     }
+
+
 
     @NonNull
     @Override

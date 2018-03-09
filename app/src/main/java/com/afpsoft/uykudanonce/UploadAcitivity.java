@@ -75,10 +75,13 @@ public class UploadAcitivity extends AppCompatActivity {
                 String storyTitle=storyTitleText.getText().toString();
                 String storyBody=storyBodyText.getText().toString();
                 Date date = new Date();
+                SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHHmmss");
+                String dateAddedToID = ft.format(date);
 
                 UUID uuid=UUID.randomUUID();
-                String uuidString= uuid.toString()+"__"+userEmail.replaceAll("\\.","DOT")+"__"+date.toString().replaceAll("\\s","");
+                String uuidString= uuid.toString()+dateAddedToID;
                 System.out.println(uuidString);
+                myRef.child("Stories").child(uuidString).child("id").setValue(uuidString);
                 myRef.child("Stories").child(uuidString).child("sentby").setValue(userEmail);
                 myRef.child("Stories").child(uuidString).child("storyTitle").setValue(storyTitle);
                 myRef.child("Stories").child(uuidString).child("storyBody").setValue(storyBody);
@@ -87,12 +90,13 @@ public class UploadAcitivity extends AppCompatActivity {
                 myRef.child("Stories").child(uuidString).child("type").setValue("1");
                 myRef.child("Stories").child(uuidString).child("isFree").setValue("1");
                 myRef.child("Stories").child(uuidString).child("hit").setValue("1");
+                myRef.child("Stories").child(uuidString).child("isVisible").setValue("1");
+                myRef.child("Stories").child(uuidString).child("likeCount").setValue("0");
+                myRef.child("Stories").child(uuidString).child("disLikeCount").setValue("0");
+                myRef.child("Stories").child(uuidString).child("author").setValue("Anonymous Artist");
 
 
-
-
-
-                Toast.makeText(getApplicationContext(),"Post Shared",Toast.LENGTH_LONG).show();;
+                Toast.makeText(getApplicationContext(),"Öykünüz İletildi.",Toast.LENGTH_LONG).show();;
 
                 Intent intent= new Intent(getApplicationContext(),StoryListing.class);
                 startActivity(intent);

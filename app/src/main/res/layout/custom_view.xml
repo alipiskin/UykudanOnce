@@ -36,4 +36,22 @@
 
     </GridLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewHit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Görüntülenme : 123" />
+
+        <TextView
+            android:id="@+id/textViewLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like: 20"
+            android:paddingLeft="20dp"/>
+    </GridLayout>
+
 </LinearLayout>
