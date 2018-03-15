@@ -83,16 +83,18 @@ public class UploadAcitivity extends AppCompatActivity {
                 System.out.println(uuidString);
                 myRef.child("Stories").child(uuidString).child("id").setValue(uuidString);
                 myRef.child("Stories").child(uuidString).child("sentby").setValue(userEmail);
-                myRef.child("Stories").child(uuidString).child("storyTitle").setValue(storyTitle);
-                myRef.child("Stories").child(uuidString).child("storyBody").setValue(storyBody);
-                myRef.child("Stories").child(uuidString).child("downloadurl").setValue(downloadURL);
+                myRef.child("Stories").child(uuidString).child("title").setValue(storyTitle);
+                myRef.child("Stories").child(uuidString).child("body").setValue(storyBody);
+                myRef.child("Stories").child(uuidString).child("image").setValue(downloadURL);
                 myRef.child("Stories").child(uuidString).child("date").setValue(date.toString());
                 myRef.child("Stories").child(uuidString).child("type").setValue("1");
                 myRef.child("Stories").child(uuidString).child("isFree").setValue("1");
-                myRef.child("Stories").child(uuidString).child("hit").setValue("1");
+                Integer initialone=1;
+                Integer initalzero=0;
+                myRef.child("Stories").child(uuidString).child("hit").setValue(initialone);
                 myRef.child("Stories").child(uuidString).child("isVisible").setValue("1");
-                myRef.child("Stories").child(uuidString).child("likeCount").setValue("0");
-                myRef.child("Stories").child(uuidString).child("disLikeCount").setValue("0");
+                myRef.child("Stories").child(uuidString).child("likeCount").setValue(initialone);
+                myRef.child("Stories").child(uuidString).child("disLikeCount").setValue(initalzero);
                 myRef.child("Stories").child(uuidString).child("author").setValue("Anonymous Artist");
 
 
@@ -138,7 +140,6 @@ public class UploadAcitivity extends AppCompatActivity {
             }
 
         }
-
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }

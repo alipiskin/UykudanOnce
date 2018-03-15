@@ -25,7 +25,7 @@ public class PostClass extends ArrayAdapter<String> {
     private final ArrayList<String> storyBody;
     private final ArrayList<String> storyImage;
     private final ArrayList<String> storySentBy;
-    private final ArrayList<String> storyHit;
+    private final ArrayList<Integer> storyHit;
     private final ArrayList<String> storyDate;
     private final ArrayList<String> storyType;
     private final ArrayList<String> storyIsFree;
@@ -38,7 +38,7 @@ public class PostClass extends ArrayAdapter<String> {
     private final Activity context;
 
 
-    public PostClass(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage,ArrayList<String> storySentBy, ArrayList<String> storyHit,ArrayList<String> storyDate,ArrayList<String> storyType,ArrayList<String> storyIsFree,ArrayList<String> storyIsVisible,ArrayList<String> storyId,ArrayList<Integer> storyLikeCount,ArrayList<Integer> storyDisLikeCount,ArrayList<String> storyAuthor,ArrayList<String> storyTags, Activity context) {
+    public PostClass(ArrayList<String> storyTitle, ArrayList<String> storyBody, ArrayList<String> storyImage,ArrayList<String> storySentBy, ArrayList<Integer> storyHit,ArrayList<String> storyDate,ArrayList<String> storyType,ArrayList<String> storyIsFree,ArrayList<String> storyIsVisible,ArrayList<String> storyId,ArrayList<Integer> storyLikeCount,ArrayList<Integer> storyDisLikeCount,ArrayList<String> storyAuthor,ArrayList<String> storyTags, Activity context) {
         super(context,R.layout.custom_view, storyTitle);
         this.storyTitle = storyTitle;
         this.storyBody = storyBody;
@@ -54,9 +54,9 @@ public class PostClass extends ArrayAdapter<String> {
         this.storyDisLikeCount = storyDisLikeCount;
         this.storyAuthor = storyAuthor;
         this.storyTags = storyTags;
-
         this.context = context;
     }
+
 
 
 
@@ -67,21 +67,26 @@ public class PostClass extends ArrayAdapter<String> {
         LayoutInflater layoutInflater=context.getLayoutInflater();
         View customView=layoutInflater.inflate(R.layout.custom_view,null,true);
 
-        TextView useremailText = (TextView) customView.findViewById(R.id.storyTitleText);
-        TextView commentText = (TextView) customView.findViewById(R.id.storyBodyText);
+        TextView storyTitleText = (TextView) customView.findViewById(R.id.storyTitleText);
+        TextView storyBodyText = (TextView) customView.findViewById(R.id.storyBodyText);
         ImageView imageView = (ImageView) customView.findViewById(R.id.storyImageView);
+        TextView hitCount= (TextView) customView.findViewById(R.id.textViewHit);
+        TextView likeCount= (TextView) customView.findViewById(R.id.textViewLike);
+        TextView dislikeCount= (TextView) customView.findViewById(R.id.textViewDislike);
 
-        useremailText.setText(storyTitle.get(position));
+        storyTitleText.setText(storyTitle.get(position));
         if (storyBody.get(position).length() > 80) {
-                commentText.setText(storyBody.get(position).substring(0,80));
+            storyBodyText.setText(storyBody.get(position).substring(0,80));
 
         }else {
-            commentText.setText(storyBody.get(position));
-
+            storyBodyText.setText(storyBody.get(position));
         }
-
-
+        System.out.println("POST CLASS IÇI storyhit : "+ storyHit.get(position) );
         Picasso.with(context).load(storyImage.get(position)).into(imageView);
+        hitCount.setText("Görüntülenme:" + storyHit.get(position).toString());
+        likeCount.setText(storyLikeCount.get(position).toString());
+        dislikeCount.setText(storyDisLikeCount.get(position).toString());
+
 
         return customView;
     }

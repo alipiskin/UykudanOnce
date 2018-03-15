@@ -30,7 +30,7 @@ public class StoryListing extends AppCompatActivity {
     ArrayList<String> storyTitleFromFB;
     ArrayList<String> storyBodyFromFB;
     ArrayList<String> storyIdFromFB;
-    ArrayList<String> storyHitFromFB;
+    ArrayList<Integer> storyHitFromFB;
     ArrayList<String> storyTypeFromFB;
     ArrayList<String> storyDateFromFB;
     ArrayList<String> storyIsFreeFromFB;
@@ -108,7 +108,7 @@ public class StoryListing extends AppCompatActivity {
         storyBodyFromFB=  new ArrayList<String>();
         storyImageFromFB= new ArrayList<String>();
         storyIdFromFB= new ArrayList<String>();
-        storyHitFromFB= new ArrayList<String>();
+        storyHitFromFB= new ArrayList<Integer>();
         storyTypeFromFB= new ArrayList<String>();
         storyDateFromFB= new ArrayList<String>();
         storyIsFreeFromFB= new ArrayList<String>();
@@ -126,9 +126,13 @@ public class StoryListing extends AppCompatActivity {
         //firebaseDatabase.setPersistenceEnabled(true);
         myRef=firebaseDatabase.getReference();
 
+
+
         adapter = new PostClass(storyTitleFromFB,storyBodyFromFB,storyImageFromFB,storySentByFromFB,storyHitFromFB,storyDateFromFB,storyTypeFromFB,storyIsFreeFromFB, storyIsVisibleFromFB, storyIdFromFB,storyLikeCountFromFB,storyDisLikeCountFromFB,storyAuthorFromFB,storyTagsFromFB,   this);
 
+
         listView = findViewById(R.id.listView);
+
 
         listView.setAdapter(adapter);
 
@@ -141,15 +145,34 @@ public class StoryListing extends AppCompatActivity {
 
                 try {
                     System.out.println("BLOGA GİRDİ");
+
+                    System.out.println("@@@@@ 1 TITLE:" + storyTitleFromFB);
+                    System.out.println("@@@@@ 1 BODY" + storyBodyFromFB);
+                    System.out.println("@@@@@ 1 IMAGE URL" + storyImageFromFB);
+                    System.out.println("@@@@@ 1 ID " + storyIdFromFB);
+                    System.out.println("@@@@@ 1 HIT" + storyHitFromFB);
+
                     Intent intent= new Intent(getApplicationContext(), StoryDetailActivity.class);
                     // intent.putExtra("info","old");
                     System.out.println("DURUM 1");
                     intent.putExtra("title",storyTitleFromFB.get(i));
+                    System.out.println("@@@@@ 2 TITLE:" + storyTitleFromFB.get(i));
+
                     intent.putExtra("body",storyBodyFromFB.get(i));
+                    System.out.println("@@@@@ 2 BODY" + storyBodyFromFB.get(i));
+
                     intent.putExtra("image",storyImageFromFB.get(i));
+                    System.out.println("@@@@@ 2 IMAGE URL" + storyImageFromFB.get(i));
+
                     intent.putExtra("id",storyIdFromFB.get(i));
+                    System.out.println("@@@@@ 2 ID " + storyIdFromFB.get(i));
+
+                    //intent.putExtra("hit",String.valueOf(storyHitFromFB.get(i)));
+                    //System.out.println("@@@@@ 2 HIT" + String.valueOf(storyHitFromFB.get(i)));
+
                     intent.putExtra("position",i);
                     System.out.println("DURUM 2");
+
 
                     startActivity(intent);
                     System.out.println("DURUM 3");
@@ -166,6 +189,16 @@ public class StoryListing extends AppCompatActivity {
 
     protected void getDataFromFirebase() {
 
+        System.out.println("##### CLEAR ARRAYS #####");
+        storyTitleFromFB.clear();
+        storyBodyFromFB.clear();
+        storyImageFromFB.clear();
+        storyIdFromFB.clear();
+        storyHitFromFB.clear();
+        storyLikeCountFromFB.clear();
+        storyDisLikeCountFromFB.clear();
+        System.out.println("##### ARRAYS CLEARED !! #####");
+
         DatabaseReference newReference= firebaseDatabase.getReference("Stories");
         newReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -177,11 +210,18 @@ public class StoryListing extends AppCompatActivity {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    HashMap<String,String> hasMap= (HashMap<String, String>) ds.getValue();
-                    storyTitleFromFB.add(hasMap.get("storyTitle"));
-                    storyBodyFromFB.add(hasMap.get("storyBody"));
-                    storyImageFromFB.add(hasMap.get("downloadurl"));
-                    storyIdFromFB.add(hasMap.get("id"));
+                    HashMap<String,Object> hasMap= (HashMap<String,Object>) ds.getValue();
+                    storyTitleFromFB.add(hasMap.get("title").toString());
+                    storyBodyFromFB.add(hasMap.get("body").toString());
+                    storyImageFromFB.add(hasMap.get("image").toString());
+                    storyIdFromFB.add(hasMap.get("id").toString());
+                    storyHitFromFB.add(Integer.valueOf(hasMap.get("hit").toString()));
+                    storyLikeCountFromFB.add(Integer.valueOf(hasMap.get("likeCount").toString()));
+                    storyDisLikeCountFromFB.add(Integer.valueOf(hasMap.get("disLikeCount").toString()));
+
+                    System.out.println("storyHitFromFB " + hasMap.get("hit") );
+
+
                     adapter.notifyDataSetChanged();
 
                     //System.out.println("useremailsFromFB" + storyTitleFromFB);
