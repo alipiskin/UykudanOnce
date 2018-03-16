@@ -3,6 +3,7 @@ package com.afpsoft.uykudanonce;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -119,25 +120,15 @@ public class StoryListing extends AppCompatActivity {
         storyAuthorFromFB= new ArrayList<String>();
         storyTagsFromFB= new ArrayList<String>();
 
-
-
-
         firebaseDatabase= FirebaseDatabase.getInstance();
         //firebaseDatabase.setPersistenceEnabled(true);
         myRef=firebaseDatabase.getReference();
 
-
-
         adapter = new PostClass(storyTitleFromFB,storyBodyFromFB,storyImageFromFB,storySentByFromFB,storyHitFromFB,storyDateFromFB,storyTypeFromFB,storyIsFreeFromFB, storyIsVisibleFromFB, storyIdFromFB,storyLikeCountFromFB,storyDisLikeCountFromFB,storyAuthorFromFB,storyTagsFromFB,   this);
-
-
         listView = findViewById(R.id.listView);
-
-
         listView.setAdapter(adapter);
 
         getDataFromFirebase();
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -166,6 +157,16 @@ public class StoryListing extends AppCompatActivity {
 
                     intent.putExtra("id",storyIdFromFB.get(i));
                     System.out.println("@@@@@ 2 ID " + storyIdFromFB.get(i));
+
+                    intent.putExtra("hit",storyHitFromFB.get(i));
+                    System.out.println("@@@@@ 2 HIT " + storyHitFromFB.get(i));
+
+                    intent.putExtra("likeCount",storyLikeCountFromFB.get(i));
+                    System.out.println("@@@@@ 2 LIKE " + storyLikeCountFromFB.get(i));
+
+                    intent.putExtra("dislikeCount",storyLikeCountFromFB.get(i));
+                    System.out.println("@@@@@ 2 DISLIKE " + storyDisLikeCountFromFB.get(i));
+
 
                     //intent.putExtra("hit",String.valueOf(storyHitFromFB.get(i)));
                     //System.out.println("@@@@@ 2 HIT" + String.valueOf(storyHitFromFB.get(i)));
@@ -239,6 +240,14 @@ public class StoryListing extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent= new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(setIntent);
+
+        return;
     }
 
 

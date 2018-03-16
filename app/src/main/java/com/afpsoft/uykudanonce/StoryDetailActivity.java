@@ -25,7 +25,9 @@ public class StoryDetailActivity extends AppCompatActivity {
     String body;
     String storyid;
     String image;
-    String hit;
+    Integer hit;
+    Integer likeCount;
+    Integer dislikeCount;
     Integer storyHitFromFB;
     Integer storyLikeCountFromFB;
     Integer storyDislikeCountFromFB;
@@ -33,6 +35,9 @@ public class StoryDetailActivity extends AppCompatActivity {
     Boolean isHit=false;
     Boolean isLike=false;
     Boolean isDislike=false;
+    TextView storyHitText;
+    TextView storyLikeCountText;
+    TextView storyDislikecountText;
 
 
 
@@ -48,11 +53,18 @@ public class StoryDetailActivity extends AppCompatActivity {
         body = intent.getStringExtra("body");
         storyid = intent.getStringExtra("id");
         image = intent.getStringExtra("image");
-        //hit = intent.getStringExtra("hit");
 
-        TextView storyTitleText = findViewById(R.id.textView);
-        TextView storyBodyText = findViewById(R.id.textView2);
-        TextView storyIDText = findViewById(R.id.textView3);
+        hit = intent.getIntExtra("hit",0);
+        likeCount = intent.getIntExtra("likeCount",0);
+        dislikeCount = intent.getIntExtra("dislikeCount",0);
+
+
+        TextView storyTitleText = findViewById(R.id.textViewTitle);
+        TextView storyBodyText = findViewById(R.id.textViewBody);
+        TextView storyIDText = findViewById(R.id.textViewID);
+        storyHitText = findViewById(R.id.textViewHit);
+        storyLikeCountText = findViewById(R.id.textViewLike);
+        storyDislikecountText = findViewById(R.id.textViewDislike);
         storyBodyText.setMovementMethod(new ScrollingMovementMethod());
         ImageView imageView = findViewById(R.id.imageView);
 
@@ -66,6 +78,10 @@ public class StoryDetailActivity extends AppCompatActivity {
         storyBodyText.setText(body);
         storyBodyText.setText(body);
         storyIDText.setText(storyid);
+        storyHitText.setText("Görüntülenme: "+hit.toString());
+        storyLikeCountText.setText(likeCount.toString());
+        storyDislikecountText.setText(dislikeCount.toString());
+
 
         Picasso.with(this).load(image).into(imageView);
 
@@ -94,9 +110,10 @@ public class StoryDetailActivity extends AppCompatActivity {
                 storyHitFromFB = storyinstance.getHit();
                 storyHitFromFB++;
                 storyinstance.setHit(storyHitFromFB);
-                if (isLike==false) {
+                if (isHit==false) {
                     newReference.setValue(storyinstance);
-                    isLike=true;
+                    storyHitText.setText("Görüntülenme: "+storyHitFromFB.toString());
+                    isHit=true;
                 }
 
             }
@@ -131,9 +148,10 @@ public class StoryDetailActivity extends AppCompatActivity {
                 storyLikeCountFromFB = storyinstance.getLikeCount();
                 storyLikeCountFromFB++;
                 storyinstance.setLikeCount(storyLikeCountFromFB);
-                if (isDislike==false) {
+                if (isLike==false) {
                     newReference.setValue(storyinstance);
-                    isDislike=true;
+                    storyLikeCountText.setText(storyLikeCountFromFB.toString());
+                    isLike=true;
                 }
 
             }
@@ -167,9 +185,10 @@ public class StoryDetailActivity extends AppCompatActivity {
                 storyDislikeCountFromFB = storyinstance.getLikeCount();
                 storyDislikeCountFromFB++;
                 storyinstance.setDisLikeCount(storyDislikeCountFromFB);
-                if (isHit==false) {
+                if (isDislike==false) {
                     newReference.setValue(storyinstance);
-                    isHit=true;
+                    storyDislikecountText.setText(storyDislikeCountFromFB.toString());
+                    isDislike=true;
                 }
 
             }
