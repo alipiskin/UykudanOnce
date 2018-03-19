@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingHorizontal="10dp"
+android:paddingVertical="10dp"
+android:weightSum="1">
+
+<TextView
+    android:id="@+id/storyTitleText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp"
-    android:weightSum="1">
+    android:paddingLeft="5dp"
+    android:textAlignment="textStart"
+    android:textColor="@android:color/black"
+    android:textSize="18sp" />
+
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/storyImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/storyTitleText"
+        android:id="@+id/storyBodyText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingLeft="5dp"
-        android:textAlignment="textStart"
+        android:textSize="14sp" />
+
+</GridLayout>
+
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewHit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/storyImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/storyBodyText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="5dp"
-            android:textSize="14sp" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textViewHit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Görüntülenme : 123" />
+        android:text="Görüntülenme : 123" />
 
 
 
-        <TextView
-            android:id="@+id/textViewLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Like: 20"
-            android:paddingLeft="20dp"/>
+    <TextView
+        android:id="@+id/textViewLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Like: 20"
+        android:paddingLeft="20dp"/>
 
-        <ImageView
-            android:id="@+id/storyImageView"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
-            app:srcCompat="@drawable/likebutton_small" />
-
-        <TextView
-            android:id="@+id/textViewDislike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Dislike: 20"
-            android:paddingLeft="20dp"/>
-
-        <ImageView
+    <ImageView
         android:id="@+id/storyImageView"
         android:layout_width="15dp"
         android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
+        android:layout_marginLeft="5dp"
+        app:srcCompat="@drawable/likebutton_small" />
+
+    <TextView
+        android:id="@+id/textViewDislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Dislike: 20"
+        android:paddingLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/storyImageView"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="5dp"
         app:srcCompat="@drawable/dislikebutton_small" />
-    </GridLayout>
+</GridLayout>
 
 </LinearLayout>

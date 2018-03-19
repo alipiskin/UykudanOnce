@@ -61,12 +61,12 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         TextView storyTitleText = findViewById(R.id.textViewTitle);
         TextView storyBodyText = findViewById(R.id.textViewBody);
-        TextView storyIDText = findViewById(R.id.textViewID);
+        // TextView storyIDText = findViewById(R.id.textViewID);
         storyHitText = findViewById(R.id.textViewHit);
         storyLikeCountText = findViewById(R.id.textViewLike);
         storyDislikecountText = findViewById(R.id.textViewDislike);
         storyBodyText.setMovementMethod(new ScrollingMovementMethod());
-        ImageView imageView = findViewById(R.id.imageView);
+        ImageView imageView = findViewById(R.id.imageViewThumb);
 
         System.out.println("@@@@@ B TITLE:" + title);
         System.out.println("@@@@@ B BODY" + body);
@@ -77,7 +77,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         storyTitleText.setText(title);
         storyBodyText.setText(body);
         storyBodyText.setText(body);
-        storyIDText.setText(storyid);
+        // storyIDText.setText(storyid);
         storyHitText.setText("Görüntülenme: "+hit.toString());
         storyLikeCountText.setText(likeCount.toString());
         storyDislikecountText.setText(dislikeCount.toString());

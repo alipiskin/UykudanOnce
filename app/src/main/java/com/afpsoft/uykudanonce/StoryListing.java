@@ -121,7 +121,7 @@ public class StoryListing extends AppCompatActivity {
         storyTagsFromFB= new ArrayList<String>();
 
         firebaseDatabase= FirebaseDatabase.getInstance();
-        //firebaseDatabase.setPersistenceEnabled(true);
+        firebaseDatabase.setPersistenceEnabled(true);
         myRef=firebaseDatabase.getReference();
 
         adapter = new PostClass(storyTitleFromFB,storyBodyFromFB,storyImageFromFB,storySentByFromFB,storyHitFromFB,storyDateFromFB,storyTypeFromFB,storyIsFreeFromFB, storyIsVisibleFromFB, storyIdFromFB,storyLikeCountFromFB,storyDisLikeCountFromFB,storyAuthorFromFB,storyTagsFromFB,   this);
